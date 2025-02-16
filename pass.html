@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>簡易密碼生成器</title>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            var texts = `1234567890-=!@#$%^&*()_+qwertyuiop[]asdfghjkl;zxcvbnm,./'<>?:"{}|~`;
+            $('#submit').click(function () {
+                var pws = $('#pws').val();
+                var words = $('#word').val();
+                var genPws = '';
+                $('textarea').val('');
+
+                genPws = '';
+                for(let j = 0; j < words; j++) {
+                    genPws += texts[Math.floor(Math.random() * texts.length)];
+                }
+                $('#textarea').val(genPws);
+
+                if (pws > 1) {
+                    for(let i = 0; i < pws - 1; i++) {
+                        genPws = '';
+                        for(let j = 0; j < words; j++) {
+                            genPws += texts[Math.floor(Math.random() * texts.length)];
+                        }
+                        $('#textarea').val($('#textarea').val() + '\n' + genPws);
+                    }   
+                }
+                
+            });
+            $('#submitNumber').click(function () {
+                var pws = $('#pws').val();
+                var words = $('#word').val();
+                var genPws = '';
+                $('textarea').val('');
+
+                genPws = '';
+                for(let j = 0; j < words; j++) {
+                    genPws += Math.floor(Math.random() * 10).toString();
+                }
+                $('#textarea').val(genPws);
+
+                if (pws > 1) {
+                    for(let i = 0; i < pws - 1; i++) {
+                        genPws = '';
+                        for(let j = 0; j < words; j++) {
+                            genPws += Math.floor(Math.random() * 10).toString();
+                        }
+                        $('#textarea').val($('#textarea').val() + '\n' + genPws);
+                    }   
+                }
+                
+            });
+        });
+    </script>
+</head>
+<body>
+    <h1>簡易密碼生成器</h1>
+    <h2>
+        這是一個免費無毒的密碼生成器，<br>
+        允許同時建立多個密碼！
+    </h2>
+    <span>密碼字數 </span><input type="number" value="12" id="word">
+    <br>
+    <span>密碼數量 </span><input type="number" value="1" id="pws">
+    <br>
+    <button id="submit">生成！</button>
+    <button id="submitNumber">純數字生成！</button>
+    <br>
+    <textarea disabled id="textarea"></textarea>
+</body>
+<style>
+    body {
+        text-align: center;
+        transition: 500ms;
+    }
+    textarea {
+        height: 400px;
+        width: 30%;
+        font-size: 16px;
+        border: 1px solid blue;
+    }
+    #submit {
+        width: 100px;
+        height: 40px;
+        margin: 5px;
+        font-size: 16px;
+        border: 5px ;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+    #submitNumber {
+        width: 150px;
+        height: 40px;
+        margin: 5px;
+        font-size: 16px;
+        border: 5px ;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+    input {
+        width: 200px;
+        height: 30px;
+        margin: 5px;
+        font-size: 16px;
+        border: 1px solid black;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+    #submit:hover {
+        width: 100px;
+        height: 40px;
+        margin: 5px;
+        font-size: 16px;
+        border: 3px solid blue;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+    #submitNumber:hover {
+        border: 3px solid gray;
+    }
+</style>
+</html>
